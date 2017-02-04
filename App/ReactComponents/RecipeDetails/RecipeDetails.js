@@ -30,12 +30,30 @@ export default class RecipeDetails extends React.Component {
             </View>
 
             <View style={styles.nutritionView}>
-              <Text style={styles.titleLabel}>Nutrition Facts</Text>
+              <Text style={styles.titleLabel}>Nutrition Facts (+ DNT%)</Text>
+              <View style={styles.nutritionList}>
+                <View style={styles.nutritionItem}>
+                  <Text style={styles.nutritionLabel}>Energy </Text>
+                  <Text style={styles.nutritionQuantity}>{Math.round(this.props.recipeDetails.totalNutrients.ENERC_KCAL.quantity)}kcal</Text>
+                  <Text style={styles.nutritionQuantity}>{Math.round(this.props.recipeDetails.totalDaily.ENERC_KCAL.quantity)}%</Text>
+                </View>
+                <View style={styles.nutritionItem}>
+                  <Text style={styles.nutritionLabel}>Fat </Text>
+                  <Text style={styles.nutritionQuantity}>{Math.round(this.props.recipeDetails.totalNutrients.FAT.quantity)}g</Text>
+                  <Text style={styles.nutritionQuantity}>{Math.round(this.props.recipeDetails.totalDaily.FAT.quantity)}%</Text>
+                </View>
+                <View style={styles.nutritionItem}>
+                  <Text style={styles.nutritionLabel}>Carbs </Text>
+                  <Text style={styles.nutritionQuantity}>{Math.round(this.props.recipeDetails.totalNutrients.CHOCDF.quantity)}g</Text>
+                  <Text style={styles.nutritionQuantity}>{Math.round(this.props.recipeDetails.totalDaily.CHOCDF.quantity)}%</Text>
+                </View>
+              </View>
             </View>
 
             <View style={styles.ingredientsView}>
               <Text style={styles.titleLabel}>Ingredients</Text>
-              {this.props.recipeDetails.ingredientLines.map(ingredient => <Text key={ingredient} style={styles.ingredientItem}>* {ingredient}</Text>)}
+              {this.props.recipeDetails.ingredientLines.map(ingredient => <Text key={ingredient}
+                                                                                style={styles.ingredientItem}>* {ingredient}</Text>)}
             </View>
 
             <View style={styles.howToView}>
@@ -98,13 +116,38 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderColor: '#FF6666',
   },
-  nutritionView:{
+  nutritionView: {
     flex: 1,
     backgroundColor: '#3d1818',
     paddingBottom: 30,
   },
+  nutritionList: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+  nutritionItem: {
+    flex: 1,
+    marginHorizontal: 20,
+  },
+  nutritionLabel: {
+    color: '#fff',
+    textAlign: 'center',
+    fontSize: 16,
+    paddingVertical: 3,
+    marginVertical: 14,
+    marginHorizontal: 15,
+    borderBottomWidth: 1,
+    borderColor: '#FF6666',
+  },
+  nutritionQuantity: {
+    color: '#fff',
+    textAlign: 'center',
+    fontSize: 16,
+    marginHorizontal: 5,
+  },
   ingredientsView: {
-    flex:1,
+    flex: 1,
     backgroundColor: '#4c1e1e',
     paddingBottom: 30,
   },
