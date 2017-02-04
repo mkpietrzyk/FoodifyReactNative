@@ -1,0 +1,1 @@
+export { default as SecondView } from './SecondView'
