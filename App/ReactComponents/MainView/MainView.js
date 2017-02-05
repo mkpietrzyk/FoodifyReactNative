@@ -2,20 +2,16 @@
 
 import React, {Component} from 'react';
 import {
-  AppRegistry,
-  Button,
   StyleSheet,
   Text,
   TextInput,
   View,
   TouchableOpacity
 } from 'react-native';
-import {Provider} from "react-redux";
 import { Actions } from 'react-native-router-flux';
 
-
 import {FetchRecipesButton} from '../FetchRecipesButton'
-import {RecipesList} from '../RecipesList'
+import {FetchFavorites} from '../FavoritesButtons/FetchFavorites'
 
 export default class MainView extends Component {
   constructor() {
@@ -48,9 +44,9 @@ export default class MainView extends Component {
 
               <FetchRecipesButton ingredients={this.state.ingredients}/>
             </View>
-            {/*<View style={styles.buttonView}>*/}
-              {/*<RecipesList/>*/}
-            {/*</View>*/}
+            <View style={styles.buttonView}>
+              <FetchFavorites/>
+            </View>
           </View>
     );
   }

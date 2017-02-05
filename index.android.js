@@ -12,6 +12,7 @@ import {MainView} from './App/ReactComponents/MainView'
 import {SecondView} from './App/ReactComponents/SecondView'
 import {RecipesList} from './App/ReactComponents/RecipesList'
 import {RecipeDetails} from './App/ReactComponents/RecipeDetails'
+import {FavoritesList} from './App/ReactComponents/FavoritesList'
 
 export default class FoodifyReactNative extends Component {
   constructor() {
@@ -27,6 +28,7 @@ export default class FoodifyReactNative extends Component {
               <Scene key="secondView" component={SecondView} title="SecondView"/>
               <scene key="recipesList" component={RecipesList} title="Recipes List"/>
               <scene key="recipeDetails" component={RecipeDetails} title="Recipe Details"/>
+              <scene key="favoritesList" component={FavoritesList} title="Your Favorites Recipes"/>
             </Scene>
           </Router>
         </Provider>
