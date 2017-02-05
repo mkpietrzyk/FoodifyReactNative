@@ -48,9 +48,9 @@ export default class MainView extends Component {
 
               <FetchRecipesButton ingredients={this.state.ingredients}/>
             </View>
-            <View style={styles.buttonView}>
-              <RecipesList/>
-            </View>
+            {/*<View style={styles.buttonView}>*/}
+              {/*<RecipesList/>*/}
+            {/*</View>*/}
           </View>
     );
   }
