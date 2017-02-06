@@ -7,17 +7,23 @@ import {
 } from 'react-native';
 import favoritesData from '../../../data/favorites.json'
 
+let favData = []
+
 export default class FetchFavorites extends React.Component {
 
   constructor() {
     super()
   }
 
+
   onPress = () => {
-      favoritesData.push(this.props)
-      AsyncStorage.setItem("favList", JSON.stringify(favoritesData))
-      this.setState({"favList": JSON.stringify(favoritesData)})
-      console.log(favoritesData)
+    AsyncStorage.getItem("favList").then((value) => {
+      this.setState({"favList": value})
+      let oldData = JSON.parse(value)
+      AsyncStorage.setItem("favList", JSON.stringify(oldData.concat(this.props)))
+      this.setState({"favList": JSON.stringify(oldData.concat(this.props))})
+    }).done();
+    console.log('i guess that did the trick <3')
   }
 
   render() {

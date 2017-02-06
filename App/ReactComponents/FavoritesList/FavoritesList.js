@@ -10,6 +10,8 @@ import {
 import {RecipeDetailsButton} from '../RecipeDetailsButton'
 import favoritesData from '../../data/favorites.json'
 
+// let favoritesData = [];
+
 
 export default class FavoritesList extends Component {
 
@@ -17,20 +19,20 @@ export default class FavoritesList extends Component {
     super()
   }
 
-  componentWillMount(){
-    this.setState({favList: ''})
+  componentWillMount() {
+    this.setState({"favList": []})
   }
 
   componentDidMount() {
     AsyncStorage.getItem("favList").then((value) => {
-      this.setState({"favList": value})
-      console.log(JSON.parse(value))
+      this.setState({"favList": JSON.parse(value)})
+      console.log(this.state)
     }).done();
   }
 
 
   render(){
-    if (favoritesData.length === 0) {
+    if (this.state.favList.length === 0) {
       return (
           <View>
             <Text>You don't have any favorites.. yet!</Text>
@@ -42,7 +44,7 @@ export default class FavoritesList extends Component {
         <View style={styles.favoritesView}>
           <ScrollView automaticallyAdjustContentInsets={false}
                       scrollEventThrottle={200}>
-            {favoritesData.map(
+            {this.state.favList.map(
                 favorite =>
                     <View style={styles.listItem}>
                       <Image
