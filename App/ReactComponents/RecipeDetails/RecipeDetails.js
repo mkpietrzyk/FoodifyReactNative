@@ -6,8 +6,7 @@ import {
   View,
   ScrollView,
 } from 'react-native';
-import {Actions} from 'react-native-router-flux';
-
+import {AddToFavorites} from '../FavoritesButtons/AddToFavorites'
 
 export default class RecipeDetails extends React.Component {
   constructor() {
@@ -61,6 +60,9 @@ export default class RecipeDetails extends React.Component {
 
             </View>
 
+            <View>
+              <AddToFavorites recipe={this.props.recipeDetails}/>
+            </View>
 
           </ScrollView>
         </View>

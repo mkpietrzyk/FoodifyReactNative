@@ -1,3 +1,1 @@
-/**
- * Created by Mikoziq on 05.02.2017.
- */
+export {default as AddToFavorites} from './AddToFavorites'

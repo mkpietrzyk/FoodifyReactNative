@@ -3,15 +3,17 @@
 import React, {Component} from 'react';
 import {
   StyleSheet,
+  AsyncStorage,
   Text,
   TextInput,
   View,
   TouchableOpacity
 } from 'react-native';
-import { Actions } from 'react-native-router-flux';
+import {Actions} from 'react-native-router-flux';
 
 import {FetchRecipesButton} from '../FetchRecipesButton'
 import {FetchFavorites} from '../FavoritesButtons/FetchFavorites'
+import favoritesData from '../../data/favorites.json'
 
 export default class MainView extends Component {
   constructor() {
@@ -19,41 +21,43 @@ export default class MainView extends Component {
 
   }
 
-  componentWillMount(){
+  componentWillMount() {
     this.setState({ingredients: ''})
   }
 
-  updateIngredients = (text) =>{
+
+  updateIngredients = (text) => {
     this.setState({ingredients: text})
     console.log(text)
   }
 
+
   render() {
     return (
-          <View style={styles.mainView}>
-            <View style={styles.logoView}>
-              <Text style={styles.logoText}> Welcome to Foodify React Native App </Text>
-            </View>
-            <View style={styles.labelView}>
-              <TextInput
-                  style={styles.labelInput}
-                  placeholder="What do you have?"
-                  onChangeText={this.updateIngredients}
-              />
-              <Text onPress={Actions.secondView}>This is PageOne!</Text>
-
-              <FetchRecipesButton ingredients={this.state.ingredients}/>
-            </View>
-            <View style={styles.buttonView}>
-              <FetchFavorites/>
-            </View>
+        <View style={styles.mainView}>
+          <View style={styles.logoView}>
+            <Text style={styles.logoText}> Welcome to Foodify React Native App </Text>
           </View>
-    );
+          <View style={styles.labelView}>
+            <TextInput
+                style={styles.labelInput}
+                placeholder="What do you have?"
+                onChangeText={this.updateIngredients}
+            />
+            <Text onPress={this.onPress}>{this.state.myKey}</Text>
+
+            <FetchRecipesButton ingredients={this.state.ingredients}/>
+          </View>
+          <View style={styles.buttonView}>
+            <FetchFavorites/>
+          </View>
+        </View>
+    )
   }
 }
 
 const styles = StyleSheet.create({
-  mainView:{
+  mainView: {
     flex: 1,
     backgroundColor: "#993d3d",
   },

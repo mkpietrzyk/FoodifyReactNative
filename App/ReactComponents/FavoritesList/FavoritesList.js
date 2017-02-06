@@ -6,48 +6,61 @@ import {
   Text,
   View,
   ScrollView,
+  AsyncStorage
 } from 'react-native';
-
 import {RecipeDetailsButton} from '../RecipeDetailsButton'
-
 import favoritesData from '../../data/favorites.json'
 
 const mapStateToProps = state => ({
   favorites: state.favoritesList.favorites
 })
 
+class FavoritesList extends Component {
 
-const FavoritesList = (props) => {
+  componentWillMount(){
+    this.setState({favList: ''})
+  }
 
-  if (favoritesData.length === 0) {
+  componentDidMount() {
+    AsyncStorage.getItem("favList").then((value) => {
+      this.setState({"favList": value})
+      console.log(JSON.parse(value))
+    }).done();
+  }
+
+
+  render(){
+    if (favoritesData.length === 0) {
+      return (
+          <View>
+            <Text>You don't have any favorites.. yet!</Text>
+          </View>
+      )
+    }
+
     return (
-        <View>
-          <Text>You don't have any favorites.. yet!</Text>
+        <View style={styles.favoritesView}>
+          <ScrollView automaticallyAdjustContentInsets={false}
+                      scrollEventThrottle={200}>
+            {favoritesData.map(
+                favorite =>
+                    <View style={styles.listItem}>
+                      <Image
+                          style={styles.itemImage}
+                          source={{uri: favorite.recipe.image}}>
+                        <View style={styles.itemLabel}>
+                          <Text style={styles.itemSource}>{favorite.recipe.source}</Text>
+                          <Text style={styles.itemHeader}>{favorite.recipe.label}</Text>
+                          <RecipeDetailsButton recipe={favorite.recipe}/>
+                        </View>
+                      </Image>
+                    </View>
+            )}
+          </ScrollView>
+          {/*<View>{this.state.favList.map(fav => <Text> {fav.recipe.label}</Text>)}</View>*/}
         </View>
     )
   }
-
-  return (
-      <View style={styles.favoritesView}>
-        <ScrollView automaticallyAdjustContentInsets={false}
-                    scrollEventThrottle={200}>
-          {favoritesData.map(
-              favorite =>
-                  <View style={styles.listItem}>
-                    <Image
-                        style={styles.itemImage}
-                        source={{uri: favorite.recipe.image}}>
-                      <View style={styles.itemLabel}>
-                        <Text style={styles.itemSource}>{favorite.recipe.source}</Text>
-                        <Text style={styles.itemHeader}>{favorite.recipe.label}</Text>
-                        <RecipeDetailsButton recipe={favorite.recipe}/>
-                      </View>
-                    </Image>
-                  </View>
-          )}
-        </ScrollView>
-      </View>
-  )
 }
 
 const styles = StyleSheet.create({

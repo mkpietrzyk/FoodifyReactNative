@@ -3,7 +3,8 @@ import {connect} from 'react-redux'
 import {
   TouchableHighlight,
   StyleSheet,
-  Text
+  Text,
+  AsyncStorage
 } from 'react-native';
 import {Actions} from 'react-native-router-flux';
 
@@ -28,9 +29,6 @@ class FetchFavorites extends React.Component {
 
   onPress = () => {
     Actions.favoritesList()
-    // this.props.fetchFavorites()
-    // console.log(props.favorites)
-    // Actions.recipesList();
   }
 
   render() {
