@@ -9,11 +9,9 @@ import {
   View,
   TouchableOpacity
 } from 'react-native';
-import {Actions} from 'react-native-router-flux';
 
 import {FetchRecipesButton} from '../FetchRecipesButton'
 import {FetchFavorites} from '../FavoritesButtons/FetchFavorites'
-import favoritesData from '../../data/favorites.json'
 
 export default class MainView extends Component {
   constructor() {
@@ -44,7 +42,6 @@ export default class MainView extends Component {
                 placeholder="What do you have?"
                 onChangeText={this.updateIngredients}
             />
-            <Text onPress={this.onPress}>{this.state.myKey}</Text>
 
             <FetchRecipesButton ingredients={this.state.ingredients}/>
           </View>

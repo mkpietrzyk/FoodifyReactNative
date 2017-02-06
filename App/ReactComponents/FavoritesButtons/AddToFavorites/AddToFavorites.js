@@ -1,20 +1,16 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux'
 import {
   TouchableHighlight,
   StyleSheet,
   Text,
   AsyncStorage
 } from 'react-native';
-import {Actions} from 'react-native-router-flux';
 import favoritesData from '../../../data/favorites.json'
 
 export default class FetchFavorites extends React.Component {
 
-
-  constructor(props) {
-    super(props)
-
+  constructor() {
+    super()
   }
 
   onPress = () => {

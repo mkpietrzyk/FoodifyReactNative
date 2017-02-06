@@ -2,10 +2,9 @@ import { compose, createStore, combineReducers, applyMiddleware } from 'redux'
 import thunkMiddleware from 'redux-thunk'
 
 import foodRecipeReducer from './App/state/foodApi/reducer'
-import favoritesReducer from './App/state/favorites/reducer'
+
 const reducer = combineReducers({
-  recipesData: foodRecipeReducer,
-  favoritesList: favoritesReducer
+  recipesData: foodRecipeReducer
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

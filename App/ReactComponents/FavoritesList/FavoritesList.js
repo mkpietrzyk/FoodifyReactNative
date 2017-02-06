@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux'
 import {
   Image,
   StyleSheet,
@@ -11,11 +10,12 @@ import {
 import {RecipeDetailsButton} from '../RecipeDetailsButton'
 import favoritesData from '../../data/favorites.json'
 
-const mapStateToProps = state => ({
-  favorites: state.favoritesList.favorites
-})
 
-class FavoritesList extends Component {
+export default class FavoritesList extends Component {
+
+  constructor() {
+    super()
+  }
 
   componentWillMount(){
     this.setState({favList: ''})
@@ -57,7 +57,6 @@ class FavoritesList extends Component {
                     </View>
             )}
           </ScrollView>
-          {/*<View>{this.state.favList.map(fav => <Text> {fav.recipe.label}</Text>)}</View>*/}
         </View>
     )
   }
@@ -102,6 +101,3 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
   },
 })
-
-
-export default connect(mapStateToProps)(FavoritesList)

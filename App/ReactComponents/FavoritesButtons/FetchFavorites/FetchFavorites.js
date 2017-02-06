@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux'
 import {
   TouchableHighlight,
   StyleSheet,
@@ -8,23 +7,12 @@ import {
 } from 'react-native';
 import {Actions} from 'react-native-router-flux';
 
-import {fetchFavorites} from '../../../state/favorites/actionCreators'
-
-const mapStateToProps = state => ({
-  favorites: state.favoritesList.favorites,
-})
-
-const mapDispatchToProps = dispatch => ({
-  fetchFavorites: () => dispatch(fetchFavorites())
-})
 
 
-class FetchFavorites extends React.Component {
+export default class FetchFavorites extends React.Component {
 
-  constructor(props) {
-    super(props)
-
-
+  constructor() {
+    super()
   }
 
   onPress = () => {
@@ -59,5 +47,3 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   }
 })
-
-export default connect(mapStateToProps, mapDispatchToProps)(FetchFavorites)

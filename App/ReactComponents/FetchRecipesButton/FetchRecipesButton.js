@@ -20,12 +20,6 @@ const mapDispatchToProps = dispatch => ({
 
 class FetchRecipesButton extends React.Component {
 
-  constructor(props) {
-    super(props)
-
-
-  }
-
   onPress = () => {
     console.log(this.props.ingredients);
     this.props.fetchRecipesList(this.props.ingredients);
